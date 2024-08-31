@@ -95,3 +95,135 @@ nav {
 .nav-active {
     display: flex;
 }
+
+
+/* Basic styling for the Tic Tac Toe board */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    flex-direction: column;
+}
+
+#tic-tac-toe {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+#message {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+
+/* Ensuring the body centers the game, but not the navbar */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+}
+
+/* Positioning the navbar at the top */
+nav {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+/* Basic styling for the Tic Tac Toe board */
+#tic-tac-toe {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    margin-top: 50px; /* Add margin to adjust the spacing from the navbar */
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+#message {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+/* Style for the hamburger menu */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Dropdown menu styles */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #333;
+    width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 999;
+}
+
+/* Show nav links when hamburger is active */
+.nav-active {
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+    display: block;
+}
+
+.nav-links li a:hover {
+    background-color: #575757;
+}

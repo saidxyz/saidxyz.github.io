@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages</title>
     <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
 </head>
 <body>
     <nav>
@@ -17,15 +17,99 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
     
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>Describe your projects here. You can add images or links to GitHub repositories.</p>
-    </section>
-    
+    <h1 style="text-align: center;">Tic Tac Toe</h1>
+    <div id="tic-tac-toe">
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+        <div class="cell" data-cell></div>
+    </div>
+    <div id="message"></div>
+    <button id="reset-button">Reset Game</button>
+    <script>
+        const cells = document.querySelectorAll('[data-cell]');
+        const messageElement = document.getElementById('message');
+        const resetButton = document.getElementById('reset-button');
+        let isXTurn = true;
+
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+    function checkWin(c) {
+        for (var j = 0; j < winningCombinations.length; j++) {
+            var win = true;
+            for (var k = 0; k < winningCombinations[j].length; k++) {
+                if (cells[winningCombinations[j][k]].className.indexOf(c) === -1) {
+                    win = false;
+                    break;
+                }
+            }
+        if (win) return true;
+        }
+    return false;
+    }
+
+
+    function checkDraw() {
+        for (var i = 0; i < cells.length; i++) {
+            if (cells[i].className.indexOf('x') === -1 && cells[i].className.indexOf('o') === -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function handleClick(e) {
+        var cell = e.target;
+        var currentClass = isXTurn ? 'x' : 'o';
+        cell.textContent = currentClass.toUpperCase();
+        cell.className += ' ' + currentClass;
+
+        if (checkWin(currentClass)) {
+            messageElement.textContent = currentClass.toUpperCase() + ' Wins!';
+            for (var i = 0; i < cells.length; i++) {
+                cells[i].removeEventListener('click', handleClick);
+            }
+        } else if (checkDraw()) {
+            messageElement.textContent = 'Draw!';
+        } else {
+            isXTurn = !isXTurn;
+        }
+    }
+
+    function resetGame() {
+    for (var i = 0; i < cells.length; i++) {
+        cells[i].textContent = '';
+        cells[i].className = cells[i].className.replace('x', '').replace('o', '').trim();
+        cells[i].addEventListener('click', handleClick);
+    }
+    messageElement.textContent = '';
+    isXTurn = true;
+}
+
+
+        cells.forEach(cell => {
+            cell.addEventListener('click', handleClick, { once: true });
+        });
+
+         resetButton.addEventListener('click', resetGame);
+    </script>
     <script>
         const hamburger = document.querySelector('.hamburger-menu');
         const navLinks = document.querySelector('.nav-links');

@@ -229,4 +229,20 @@ nav {
 }
 
 
+p {
+    display: flex;
+    flex-direction: row; /* Aligns the badges horizontally */
+    justify-content: center; /* Centers the badges horizontally */
+    gap: 0px; /* Removes space between each badge */
+    margin: 0; /* Removes any default margin */
+    padding: 0; /* Removes any default padding */
+}
 
+p a {
+    text-align: center;
+}
+
+p a img {
+    width: auto; /* Keeps badges at their natural size */
+    height: auto; /* Maintain aspect ratio */
+}

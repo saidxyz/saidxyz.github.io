@@ -118,7 +118,7 @@ body {
 .cell {
     width: 100px;
     height: 100px;
-    background-color: #f4f4f4;
+    background-color: #696969 ; /* A darker shade of gray */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,3 +227,6 @@ nav {
 .nav-links li a:hover {
     background-color: #575757;
 }
+
+
+

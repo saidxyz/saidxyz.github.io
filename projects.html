@@ -41,29 +41,23 @@
         let isXTurn = true;
 
         const winningCombinations = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
+            [0, 1, 2], // Top row
+            [3, 4, 5], // Middle row
+            [6, 7, 8], // Bottom row
+            [0, 3, 6], // First column
+            [1, 4, 7], // Second column
+            [2, 5, 8], // Third column
+            [0, 4, 8], // Diagonal from top-left to bottom-right
+            [2, 4, 6]  // Diagonal from top-right to bottom-left
         ];
 
-    function checkWin(c) {
-        for (var j = 0; j < winningCombinations.length; j++) {
-            var win = true;
-            for (var k = 0; k < winningCombinations[j].length; k++) {
-                if (cells[winningCombinations[j][k]].className.indexOf(c) === -1) {
-                    win = false;
-                    break;
-                }
-            }
-        if (win) return true;
+        function checkWin(currentClass) {
+            return winningCombinations.some(combination => {
+                return combination.every(index => {
+                    return cells[index].classList.contains(currentClass);
+                });
+            });
         }
-    return false;
-    }
 
 
     function checkDraw() {
@@ -76,10 +70,19 @@
     }
 
     function handleClick(e) {
-        var cell = e.target;
+    var cell = e.target;
+
+        // Prevent changing the symbol if the cell is already filled
+        if (cell.className.includes('x') || cell.className.includes('o')) {
+            return;
+        }
+
         var currentClass = isXTurn ? 'x' : 'o';
         cell.textContent = currentClass.toUpperCase();
         cell.className += ' ' + currentClass;
+
+        // Add class to gray out the cell
+        cell.classList.add('grayed-out');
 
         if (checkWin(currentClass)) {
             messageElement.textContent = currentClass.toUpperCase() + ' Wins!';
@@ -96,12 +99,13 @@
     function resetGame() {
     for (var i = 0; i < cells.length; i++) {
         cells[i].textContent = '';
-        cells[i].className = cells[i].className.replace('x', '').replace('o', '').trim();
-        cells[i].addEventListener('click', handleClick);
+        cells[i].className = 'cell'; // Reset to the original class
+        cells[i].addEventListener('click', handleClick, { once: true }); // Reattach event listener
     }
     messageElement.textContent = '';
     isXTurn = true;
 }
+
 
 
         cells.forEach(cell => {

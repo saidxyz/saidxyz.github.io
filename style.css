@@ -246,3 +246,8 @@ p a img {
     width: auto; /* Keeps badges at their natural size */
     height: auto; /* Maintain aspect ratio */
 }
+
+.grayed-out {
+    background-color: #e0e0e0; /* Lighter gray */
+    color: #333; /* Ensure the text remains visible */
+}

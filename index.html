@@ -19,18 +19,36 @@
             <li><a href="tic-tac-toe.html">Tic Tac Toe</a></li>
         </ul>
     </nav>
-
+    
     <section id="home">
         <h1>Hello World!</h1>
         <p>My name is Said :)</p>
         <img src="assets/images/image.png" alt="Profile pic">
     </section>
 
-    <p>
-        <a href="https://www.linkedin.com/in/said-nasser/"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-blue?style=flat-square&logo=linkedin"></a>  
-        <a href="mailto:said_nasser96@hotmail.com"><img alt="Email" src="https://img.shields.io/badge/Email-said_nasser96@hotmail.com-purple?style=flat-square&logo=gmail"></a>
-        <a href="https://github.com/saidxyz"><img alt="github" src="https://img.shields.io/badge/github.com-black?style=flat-square&logo=github"></a>
-    </p>
+    <div id="footer">
+        <a href="https://www.linkedin.com/in/said-nasser/">LinkedIn</a> |
+        <a href="https://github.com/saidxyz">GitHub</a> |
+        <a href="mailto:said_nasser96@hotmail.com">Email</a> 
+    </div>
+    
+    <style>    
+        #footer {
+            color: black; /* Set the text color to black */
+            text-align: center;
+            padding: 10px;
+        }
+
+        #footer a {
+            color: black; /* Set the link color to black */
+            text-decoration: none;
+            margin: 0 10px; /* Adds spacing between the links */
+        }
+
+        #footer a:hover {
+            text-decoration: underline; /* Optional: underline the links on hover */
+        }
+    </style>
     
     <script>
         const hamburger = document.querySelector('.hamburger-menu');

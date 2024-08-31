@@ -251,3 +251,92 @@ p a img {
     background-color: #e0e0e0; /* Lighter gray */
     color: #333; /* Ensure the text remains visible */
 }
+
+.winner {
+    background-color: #90ee90; /* Light green background to highlight the win */
+    color: white; /* Optional: Change text color to white for better contrast */
+}
+
+
+#scoreboard {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+#scoreboard p {
+    margin: 5px 0;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+#reset-button {
+    background-color: red;
+    color: white;
+}
+
+#play-again-button {
+    background-color: green;
+    color: white;
+}
+
+
+#scoreboard {
+    margin-bottom: 20px;
+    font-size: 1.5em; /* Increase font size for visibility */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Dark text color for contrast */
+    text-align: center; /* Center the scoreboard */
+}
+
+#scoreboard p {
+    margin: 5px 0;
+}
+
+#score-x {
+    color: #1e90ff; /* Blue color for Player X */
+}
+
+#score-o {
+    color: #ff4500; /* Orange-red color for Player O */
+}
+
+
+#scoreboard {
+    display: flex;
+    justify-content: center; /* Centers the score elements */
+    gap: 50px; /* Space between Player X and Player O */
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+#scoreboard div {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+}
+
+#player-x {
+    color: #1e90ff; /* Blue for Player X */
+}
+
+#player-o {
+    color: #ff4500; /* Orange-red for Player O */
+}
+
+#turn-indicator {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}

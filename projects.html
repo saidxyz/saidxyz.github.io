@@ -21,7 +21,19 @@
     </nav>
     
     <h1 style="text-align: center;">Tic Tac Toe</h1>
+
+    <div id="scoreboard">
+        <div id="player-x">
+            <span>X</span>: <span id="score-x">1</span>
+        </div>
+        <div id="player-o">
+            <span>O</span>: <span id="score-o">1</span>
+        </div>
+    </div>
+    <p id="turn-indicator">Player X's Turn</p>
+
     <div id="tic-tac-toe">
+        <!-- Your Tic Tac Toe grid cells -->
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
@@ -33,12 +45,12 @@
         <div class="cell" data-cell></div>
     </div>
     <div id="message"></div>
+    <button id="play-again-button">Play Again</button>
     <button id="reset-button">Reset Game</button>
     <script>
         const cells = document.querySelectorAll('[data-cell]');
         const messageElement = document.getElementById('message');
         const resetButton = document.getElementById('reset-button');
-        let isXTurn = true;
 
         const winningCombinations = [
             [0, 1, 2], // Top row
@@ -51,14 +63,37 @@
             [2, 4, 6]  // Diagonal from top-right to bottom-left
         ];
 
-        function checkWin(currentClass) {
-            return winningCombinations.some(combination => {
-                return combination.every(index => {
-                    return cells[index].classList.contains(currentClass);
-                });
+    // Variables to keep track of scores
+    let scoreX = 0;
+    let scoreO = 0;
+
+    // Function to check if there's a winner
+    function checkWin(currentClass) {
+        const winningCombination = winningCombinations.find(combination => {
+            return combination.every(index => {
+                return cells[index].classList.contains(currentClass);
             });
+        });
+
+    if (winningCombination) {
+        winningCombination.forEach(index => {
+            cells[index].classList.add('winner');
+        });
+
+        // Update the score and display it
+        if (currentClass === 'x') {
+            scoreX++;
+            document.getElementById('score-x').textContent = scoreX;
+        } else {
+            scoreO++;
+            document.getElementById('score-o').textContent = scoreO;
         }
 
+        return true;
+    }
+
+    return false;
+}
 
     function checkDraw() {
         for (var i = 0; i < cells.length; i++) {
@@ -69,8 +104,10 @@
         return true;
     }
 
+    let isXTurn = true;
+
     function handleClick(e) {
-    var cell = e.target;
+        var cell = e.target;
 
         // Prevent changing the symbol if the cell is already filled
         if (cell.className.includes('x') || cell.className.includes('o')) {
@@ -85,34 +122,52 @@
         cell.classList.add('grayed-out');
 
         if (checkWin(currentClass)) {
-            messageElement.textContent = currentClass.toUpperCase() + ' Wins!';
-            for (var i = 0; i < cells.length; i++) {
-                cells[i].removeEventListener('click', handleClick);
-            }
+            messageElement.textContent = `${currentClass.toUpperCase()} Wins!`;
+            cells.forEach(cell => cell.removeEventListener('click', handleClick));
         } else if (checkDraw()) {
             messageElement.textContent = 'Draw!';
         } else {
             isXTurn = !isXTurn;
+            document.getElementById('turn-indicator').textContent = `Player ${isXTurn ? 'X' : 'O'}'s Turn`;
         }
     }
-
     function resetGame() {
-    for (var i = 0; i < cells.length; i++) {
-        cells[i].textContent = '';
-        cells[i].className = 'cell'; // Reset to the original class
-        cells[i].addEventListener('click', handleClick, { once: true }); // Reattach event listener
-    }
-    messageElement.textContent = '';
-    isXTurn = true;
-}
-
-
-
         cells.forEach(cell => {
-            cell.addEventListener('click', handleClick, { once: true });
+            cell.textContent = '';
+            cell.className = 'cell'; // Reset to the original class
+            cell.addEventListener('click', handleClick, { once: true }); // Reattach event listener
         });
+        messageElement.textContent = '';
+        isXTurn = true;
+        document.getElementById('turn-indicator').textContent = `Player X's Turn`; // Reset turn indicator
+    }
 
-         resetButton.addEventListener('click', resetGame);
+    // Function to reset the game completely, including scores
+    //function resetGame() {
+    //    scoreX = 0;
+    //    scoreO = 0;
+    //    document.getElementById('score-x').textContent = scoreX;
+    //    document.getElementById('score-o').textContent = scoreO;
+    //    playAgain(); // Reset the board as well
+    //}
+
+    // Function to reset the game board while keeping the scores
+    function playAgain() {
+        cells.forEach(cell => {
+            cell.textContent = '';
+            cell.className = 'cell'; // Reset to the original class
+            cell.addEventListener('click', handleClick, { once: true }); // Reattach event listener
+        });
+        messageElement.textContent = '';
+        isXTurn = true;
+    }
+
+    // Add event listeners to the buttons
+    document.getElementById('reset-button').addEventListener('click', resetGame);
+    document.getElementById('play-again-button').addEventListener('click', playAgain);
+    
+// Initial setup of the game
+playAgain();
     </script>
     <script>
         const hamburger = document.querySelector('.hamburger-menu');

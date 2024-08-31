@@ -16,3 +16,82 @@ img {
     max-width: 90%;
 }
 
+/* Basic nav styles */
+nav {
+    position: relative;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin: 1em;
+    z-index: 1000;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hide the nav links by default */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #333;
+    width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 999;
+}
+
+/* Show nav links when hamburger is active */
+.nav-active {
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 1em;
+    display: block;
+}
+
+.nav-links li a:hover {
+    background-color: #575757;
+}
+
+
+/* Adjust nav-links to drop down from the left side */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    position: absolute;
+    top: 60px; /* Adjust based on the height of your navbar */
+    left: 0;   /* Aligns the dropdown to the left side */
+    background-color: #333;
+    width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 999;
+}
+
+/* Show nav links when hamburger is active */
+.nav-active {
+    display: flex;
+}

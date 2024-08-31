@@ -24,10 +24,10 @@
 
     <div id="scoreboard">
         <div id="player-x">
-            <span>X</span>: <span id="score-x">1</span>
+            <span>X</span>: <span id="score-x">0</span>
         </div>
         <div id="player-o">
-            <span>O</span>: <span id="score-o">1</span>
+            <span>O</span>: <span id="score-o">0</span>
         </div>
     </div>
     <p id="turn-indicator">Player X's Turn</p>
@@ -131,25 +131,17 @@
             document.getElementById('turn-indicator').textContent = `Player ${isXTurn ? 'X' : 'O'}'s Turn`;
         }
     }
-    function resetGame() {
-        cells.forEach(cell => {
-            cell.textContent = '';
-            cell.className = 'cell'; // Reset to the original class
-            cell.addEventListener('click', handleClick, { once: true }); // Reattach event listener
-        });
-        messageElement.textContent = '';
-        isXTurn = true;
-        document.getElementById('turn-indicator').textContent = `Player X's Turn`; // Reset turn indicator
-    }
+
+
 
     // Function to reset the game completely, including scores
-    //function resetGame() {
-    //    scoreX = 0;
-    //    scoreO = 0;
-    //    document.getElementById('score-x').textContent = scoreX;
-    //    document.getElementById('score-o').textContent = scoreO;
-    //    playAgain(); // Reset the board as well
-    //}
+    function resetGame() {
+        scoreX = 0;
+        scoreO = 0;
+        document.getElementById('score-x').textContent = scoreX;
+        document.getElementById('score-o').textContent = scoreO;
+        playAgain(); // Reset the board as well
+    }
 
     // Function to reset the game board while keeping the scores
     function playAgain() {

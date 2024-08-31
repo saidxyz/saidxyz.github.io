@@ -8,19 +8,12 @@
 </head>
 <body>
     <body>
-        <nav>
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <section id="home">
+            <h1>Hello World!</h1>
+            <p>My name is Said :)</p>
+            <img src="assets/images/image.png" alt="Profile pic">
+        </section>
+        
         <section id="about">
             <h2>About Me</h2>
             <p>Write a brief introduction about yourself here.</p>
@@ -35,15 +28,7 @@
             <h2>Contact</h2>
             <p>Provide your contact information or a form where people can reach you.</p>
         </section>
+        <script src="main.js"></script>
     </body>
-    <script>
-        const hamburger = document.querySelector('.hamburger-menu');
-        const navLinks = document.querySelector('.nav-links');
-    
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-active');
-        });
-    </script>
-    <script src="main.js"></script>
 </body>
 </html>

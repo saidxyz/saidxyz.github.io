@@ -383,7 +383,7 @@ button {
 .iframe-container {
     width: 90%;
     max-width: 1100px;
-    height: 700px;
+    height: 800px; /* Increased height for a taller iframe */
     margin: 50px auto; /* Centers the container */
     border: 2px solid #ccc;
     border-radius: 10px;

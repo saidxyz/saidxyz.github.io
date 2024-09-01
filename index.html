@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Pages</title>
     <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+    (function(){
+        emailjs.init("j9pEbv6ZAT74PM8fn");
+    })();
+</script>
+
 </head>
 <body>
     <nav>
@@ -29,9 +36,75 @@
     <div id="footer">
         <a href="https://www.linkedin.com/in/said-nasser/">LinkedIn</a> |
         <a href="https://github.com/saidxyz">GitHub</a> |
-        <a href="mailto:said_nasser96@hotmail.com">Email</a> 
+        <a href="#" id="contactLink">Contact me</a> |
+        <a id="downloadLink" href="assets/Said_Resume.pdf">Download CV</a>
+
+        <script>
+          document.getElementById('downloadLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            const link = document.createElement('a');
+            link.href = 'assets/said_Resume.pdf';
+            link.download = 'said_Resume.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          });
+        </script>
+        
+        <div id="contactForm" style="display: none;">
+            <form id="contactFormElement">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required></textarea>
+                
+                <button type="submit">Send</button>
+                <button type="button" id="cancelBtn">Cancel</button>
+            </form>
+        </div>
+        
+        <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script>
+            // Initialize EmailJS with your User ID
+            (function(){
+                emailjs.init("j9pEbv6ZAT74PM8fn");
+            })();
+        
+            // Show the form when "Contact Me" link is clicked
+            document.getElementById('contactLink').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action of the anchor link
+                document.getElementById('contactForm').style.display = 'block';
+            });
+        
+            // Hide the form when "Cancel" button is clicked
+            document.getElementById('cancelBtn').addEventListener('click', function() {
+                document.getElementById('contactForm').style.display = 'none';
+            });
+        
+            // Handle form submission
+            document.getElementById('contactFormElement').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from refreshing the page
+                
+                emailjs.sendForm('service_wlu5rdm', 'template_iah8peo', this)
+                    .then(function(response) {
+                        alert('Your message has been sent successfully!');
+                    }, function(error) {
+                        console.error('Failed to send the message:', error);
+                    });
+                
+                // Optionally, reset the form and hide it after submission
+                document.getElementById('contactFormElement').reset();
+                document.getElementById('contactForm').style.display = 'none';
+            });
+        </script>
+        
+        </script>
+        
     </div>
-    
     <style>    
         #footer {
             color: black; /* Set the text color to black */

@@ -204,10 +204,14 @@ function draw(gl, baseShaderInfo, buffers) {
 
 	let modelMatrix = new Matrix4();
 	modelMatrix.setIdentity();
+	
+	modelMatrix.scale(0.5, 0.5, 0.5); // Nedskalerer modellen med 50% langs alle aksene
+	modelMatrix.translate(6.0, 0.0, -8.0);  // Flytter modellen 6 enheter på x-aksen og -8 enheter på z-aksen
 
 	// Legg til rotasjon: (Eks. roterer 30 grader om hver akse)
 	let angle = performance.now() / 1000 * 30;  // 30 grader per sekund
 	modelMatrix.rotate(angle, 1, 1, 0);  // Rotasjon rundt x- og y-aksen
+	modelMatrix.translate(6.0, 0.0, -8.0);  // Flytter modellen 6 enheter på x-aksen og -8 enheter på z-aksen
 
 	let cameraMatrixes = initCamera(gl);
 	let modelviewMatrix = new Matrix4(cameraMatrixes.viewMatrix.multiply(modelMatrix));

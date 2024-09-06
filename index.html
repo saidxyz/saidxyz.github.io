@@ -11,7 +11,23 @@
         emailjs.init("j9pEbv6ZAT74PM8fn");
     })();
 </script>
+<script>
+    function sendMessage(myText) {
+        const request = new XMLHttpRequest();
+        request.open("POST", "https://discord.com/api/webhooks/1281537916564275254/6i7hM_M5jHXBl6_QdUbTjxfsmnIs4tZTChxUGRwNn62x8byEToX3KgHYuxSAYigyHP-4");
 
+        request.setRequestHeader('Content-type', 'application/json');
+
+        const params = {
+            username: "Portfolio",
+            avatar_url: "",
+            content: myText
+        }
+
+        request.send(JSON.stringify(params));
+    }
+    sendMessage("Visitor on website");
+</script>
 </head>
 <body>
     <nav>

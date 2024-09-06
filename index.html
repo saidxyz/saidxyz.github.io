@@ -13,21 +13,27 @@
 </script>
 <script>
     function sendMessage(myText) {
-        const request = new XMLHttpRequest();
+            const request = new XMLHttpRequest();
+            request.open("POST", "https://discord.com/api/webhooks/1281537916564275254/6i7hM_M5jHXBl6_QdUbTjxfsmnIs4tZTChxUGRwNn62x8byEToX3KgHYuxSAYigyHP-4");
 
-        request.open("POST", "https://discord.com/api/webhooks/1281537916564275254/6i7hM_M5jHXBl6_QdUbTjxfsmnIs4tZTChxUGRwNn62x8byEToX3KgHYuxSAYigyHP-4");
+            request.setRequestHeader('Content-type', 'application/json');
 
-        request.setRequestHeader('Content-type', 'application/json');
+            const params = {
+                username: "Spybot",
+                avatar_url: "",
+                content: myText
+            }
 
-        const params = {
-            username: "Portfolio",
-            avatar_url: "",
-            content: myText
+            request.send(JSON.stringify(params));
         }
-
-        request.send(JSON.stringify(params));
-    }
-    sendMessage("Visitor on website: " + new Date());
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                sendMessage("Date: "+new Date() + "\nVisitor arrived: " + data.ip);
+            })
+            .catch(error => {
+                console.log('Error:', error);
+            });
 </script>
 </head>
 <body>
